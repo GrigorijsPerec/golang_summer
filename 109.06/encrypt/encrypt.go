@@ -29,6 +29,8 @@ func main() {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
+	buffer := make([]byte, 0, 1024*1024) // Set buffer size to 1 MB
+	scanner.Buffer(buffer, 1024*1024/1024)
 
 	outputFile, err := os.Create(outputFilePath)
 	if err != nil {
